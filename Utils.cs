@@ -29,6 +29,19 @@ public class Utils
             string[] robotCommand = robot.Split(" ");
             string quantity = robotCommand[1];
             string robotName = robotCommand[2];
+            string[] allowedRobotsName = { "XM-1", "RD-1", "WI-1" };
+            
+            if (!allowedRobotsName.Contains(robotName.ToUpper()))
+            {
+                ShowError($"{robotName} isn't a recognized robot.");
+                continue;
+            }
+            if (int.Parse(quantity) <= 0)
+            {
+                ShowError("Invalid quantity.");
+                continue;
+            }
+            
             if (robotQuantities.ContainsKey(robotName))
             {
                 robotQuantities[robotName] += int.Parse(quantity);

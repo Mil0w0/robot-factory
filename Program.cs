@@ -33,7 +33,8 @@ while (input.ToUpper() != "Q")
     }
     else if (input.ToUpper().StartsWith("VERIFY"))
     {
-        
+        Dictionary<string, int> robotQuantities = Utils.FilterCommand(input);
+        ourFactory.checkPiecesAvailability(robotQuantities);
     }
     else if (input.ToUpper().StartsWith("PRODUCE"))
     {
