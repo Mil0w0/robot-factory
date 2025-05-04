@@ -27,9 +27,8 @@ public class Utils
         foreach (var robot in robots)
         {
             string[] robotCommand = robot.Split(" ");
-            string quantity = robotCommand[0];
-            string robotName = robotCommand[1];
-            
+            string quantity = robotCommand[1];
+            string robotName = robotCommand[2];
             if (robotQuantities.ContainsKey(robotName))
             {
                 robotQuantities[robotName] += int.Parse(quantity);
