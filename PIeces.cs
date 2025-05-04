@@ -8,6 +8,38 @@ public class Piece
     {
         return name; 
     }
+    public virtual string GetName()
+    {
+        return name;
+    }  
+    public virtual string GetPieceType()
+    {
+        return type;
+    }
+}
+public class Assembly : Piece
+{
+    private string name;
+    private string type = "ASSEMBLY";
+    
+    public Assembly(string name)
+    {
+        this.name = name;
+    }
+    
+    public override string ToString()
+    {
+        return name; 
+    }
+    public override string GetName()
+    {
+        return name;
+    }
+    
+    public override string GetPieceType()
+    {
+        return type;
+    }
 }
 public class Core : Piece
 {
@@ -23,6 +55,16 @@ public class Core : Piece
     public override string ToString()
     {
         return name;
+    }
+    
+    public override string GetName()
+    {
+        return name;
+    }
+    
+    public override string GetPieceType()
+    {
+        return type;
     }
 }
 
@@ -40,6 +82,16 @@ public class Arm : Piece
     {
         return name;
     }
+    
+    public override string GetName()
+    {
+        return name;
+    }
+    
+    public override string GetPieceType()
+    {
+        return type;
+    }
 }
 
 public class Leg : Piece
@@ -55,6 +107,16 @@ public class Leg : Piece
     {
         return name; 
     }
+    
+    public override string GetName()
+    {
+        return name;
+    }
+    
+    public override string GetPieceType()
+    {
+        return type;
+    }
 }
 public class Generator: Piece
 {
@@ -69,6 +131,16 @@ public class Generator: Piece
     {
         return name; 
     }
+    
+    public override string GetName()
+    {
+        return name;
+    }
+    
+    public override string GetPieceType()
+    {
+        return type;
+    }
 }
 
 public class System
@@ -82,5 +154,10 @@ public class System
     public override string ToString()
     { 
         return name; 
+    }
+    
+    public string GetName()
+    {
+        return name;
     }
 }
