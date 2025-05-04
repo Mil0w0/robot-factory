@@ -192,89 +192,30 @@ public class Factory
     {
         foreach (var robotQuantity in robotQuantities)
         {
-            //todo
+            List<Piece> pieces = new List<Piece>();
+            switch (robotQuantity.Key.ToUpper())
+            {
+                case "XM-1":
+                    pieces = XM1.GetNeededPieces();
+                    break;
+                case "RD-1":
+                    pieces = RD1.GetNeededPieces();
+                    break;
+                case "WI-1":
+                    pieces = WI1.GetNeededPieces();
+                    break;
+                default:
+                    Utils.ShowError("Invalid robot type name.");
+                    break;
+            }
+
+            foreach (Piece piece in pieces)
+            {
+                stocks.UpdateStock(piece.GetName(), robotQuantity.Value); //only works cuz we need 1 piece of each?
+            }
+            stocks.UpdateStock(robotQuantity.Key, robotQuantity.Value);
+            Console.WriteLine("STOCK_UPDATED");
         }
     }
     
-}
-public class Stock
-{
-    //fixme: oui j'ai pas fait d'effort mais il y aura un refacto
-    public int XM1 { get; set; } = 0;
-    public int RD1 { get; set; } = 0;
-    public int WI1 { get; set; } = 0;
-    public int Core_CM1 { get; set; } = 1;
-    public int Core_CD1 { get; set; } = 1;
-    public int Core_CI1 { get; set; } = 1;
-    public int Generator_GM1 { get; set; } = 1;
-    public int Generator_GD1 { get; set; } = 1;
-    public int Generator_GI1 { get; set; } = 1;
-    public int Arms_AM1 { get; set; } = 1;
-    public int Arms_AD1 { get; set; } = 1;
-    public int Arms_AI1 { get; set; } = 1;
-    public int Legs_LM1 { get; set; } = 1;
-    public int Legs_LD1 { get; set; } = 1;
-    public int Legs_LI1 { get; set; } = 1;
-  
-    
-    public void DisplayStock()
-    {
-        Console.WriteLine($"{XM1} XM-1");
-        Console.WriteLine($"{RD1} RD-1");
-        Console.WriteLine($"{WI1} WI-1");
-        Console.WriteLine($"{Core_CM1} Core_CM1");
-        Console.WriteLine($"{Core_CD1} Core_CD1");
-        Console.WriteLine($"{Core_CI1} Core_CI1");
-        Console.WriteLine($"{Generator_GM1} Generator_GM1");
-        Console.WriteLine($"{Generator_GD1} Generator_GD1");
-        Console.WriteLine($"{Generator_GI1} Generator_GI1");
-        Console.WriteLine($"{Arms_AM1} Arms_AM1");
-        Console.WriteLine($"{Arms_AD1} Arms_AD1");
-        Console.WriteLine($"{Arms_AI1} Arms_AI1");
-        Console.WriteLine($"{Legs_LM1} Legs_LM1");
-        Console.WriteLine($"{Legs_LD1} Legs_LD1");
-        Console.WriteLine($"{Legs_LI1} Legs_LI1");
-        
-    }
-    
-    public int GetStock(string name)
-    {
-        switch (name.ToUpper())
-        {
-            case "XM-1":
-                return XM1;
-            case "RD-1":
-                return RD1;
-            case "WI-1":
-                return WI1;
-            case "CORE_CM1":
-                return Core_CM1;
-            case "CORE_CD1":
-                return Core_CD1;
-            case "CORE_CI1":
-                return Core_CI1;
-            case "GENERATOR_GM1":
-                return Generator_GM1;
-            case "GENERATOR_GD1":
-                return Generator_GD1;
-            case "GENERATOR_GI1":
-                return Generator_GI1;
-            case "ARMS_AM1":
-                return Arms_AM1;
-            case "ARMS_AD1":
-                return Arms_AD1;
-            case "ARMS_AI1":
-                return Arms_AI1;
-            case "LEGS_LM1":
-                return Legs_LM1;
-            case "LEGS_LD1":
-                return Legs_LD1;
-            case "LEGS_LI1":
-                return Legs_LI1;
-                
-            default:
-                Utils.ShowError("Invalid robot piece name.");
-                return 0;
-        }
-    }
 }
