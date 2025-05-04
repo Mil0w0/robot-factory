@@ -1,43 +1,21 @@
 namespace RobotFactory;
 
-public class Factory
+public class RobotTemplate
 {
-    private Stock stocks = new Stock();
+    private string name;
+    private Dictionary<Piece, int> pieces = new Dictionary<Piece, int>();
     
-    public void ShowStock()
+    public RobotTemplate(string name, Dictionary<Piece, int> pieces)
     {
-        stocks.DisplayStock();
+        this.name = name;
+        this.pieces = pieces;
     }
-    
-    public void updateStock(string robotTypeName, int quantity)
+
+    public void ShowPiecesNeeded(int quantity = 1)
     {
-        switch (robotTypeName.ToUpper())
+        foreach (var piece in pieces)
         {
-            case "XM-1":
-                stocks.XM1 -= quantity;
-                break;
-            case "RD-1":
-                stocks.RD1 -= quantity;
-                break;
-            case "WI-1":
-                stocks.WI1 -= quantity;
-                break;
-            default:
-                Utils.ShowError("Invalid robot type name.");
-                break;
+            Console.WriteLine($"{piece.Value * quantity} {piece.Key.ToString()}");
         }
-    }
-}
-public class Stock
-{
-    public int XM1 { get; set; } = 1;
-    public int RD1 { get; set; } = 5;
-    public int WI1 { get; set; } = 2;
-    
-    public void DisplayStock()
-    {
-        Console.WriteLine($"{XM1} XM-1");
-        Console.WriteLine($"{RD1} RD-1");
-        Console.WriteLine($"{WI1} WI-1");
     }
 }
