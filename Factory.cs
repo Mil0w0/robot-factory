@@ -112,6 +112,40 @@ public class Factory
             
         }
     }
+
+    public void GetRobotProductionInstructions(Dictionary<string, int> robotQuantities)
+    {
+        foreach (var sameRobotQuantity in robotQuantities)
+        {
+            for (int i = 0; i < sameRobotQuantity.Value; i++)
+            {
+                Console.WriteLine("PRODUCING " + sameRobotQuantity.Key + " (" + (i + 1) + "/" + sameRobotQuantity.Value + ")");
+
+                List<Piece> pieces;
+                //fixme : c'est pas très joli mais ok 
+                switch (sameRobotQuantity.Key.ToUpper()) 
+                {
+                    case "WI-1" :
+                        pieces = (WI1.GetNeededPieces());
+                        WI1.ShowInstructions(pieces);
+                        break;
+                    case "RD-1" :
+                        pieces = (RD1.GetNeededPieces());
+                        RD1.ShowInstructions(pieces);
+                        break;
+                    case "XM-1":
+                        pieces = (XM1.GetNeededPieces());
+                        XM1.ShowInstructions(pieces);
+                        break;
+                    default:
+                        Utils.ShowError("Invalid robot type name.");
+                        break;
+                }
+                
+                Console.WriteLine("FINISHED " + sameRobotQuantity.Key + " (" + (i + 1) + "/" + sameRobotQuantity.Value + ")");
+            }
+        }
+    }
 }
 public class Stock
 {
