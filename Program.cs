@@ -2,7 +2,7 @@
 using RobotFactory;
 
 //INITIALIZATION OF THE FACTORY
-string command = "";
+string input = "";
 Factory ourFactory = new Factory();
 
 
@@ -12,23 +12,28 @@ Console.WriteLine("Enter 'Q' to quit.");
 Console.WriteLine("Enter 'STOCKS' to check the factory stocks.");
 Console.WriteLine("Enter 'INSTRUCTIONS 1 XM-1' to see the steps to create 1 XM-1 robot.");
 
-while (command.ToUpper() != "Q")
+while (input.ToUpper() != "Q")
 {
-    command = Utils.GetUserInput("Enter a command:");
+    input = Utils.GetUserInput("Enter a input:");
     
-    if (command.ToUpper() == "STOCKS")
+    if (input.ToUpper() == "STOCKS")
     {
        ourFactory.ShowStock();
     }
-    else if (command.ToUpper().StartsWith("INSTRUCTIONS"))
+    else if (input.ToUpper().StartsWith("NEEDED_STOCKS"))
+    {
+        Dictionary<string, int> robotQuantities = Utils.FilterCommand(input);
+        
+    }
+    else if (input.ToUpper().StartsWith("INSTRUCTIONS"))
     {
         
     }
-    else if (command.ToUpper().StartsWith("VERIFY"))
+    else if (input.ToUpper().StartsWith("VERIFY"))
     {
         
     }
-    else if (command.ToUpper().StartsWith("PRODUCE"))
+    else if (input.ToUpper().StartsWith("PRODUCE"))
     {
         
     }
