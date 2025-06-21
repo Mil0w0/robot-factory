@@ -13,14 +13,14 @@ public class RobotTemplate
     
     public List<Piece> GetNeededPieces()
     {
-        return new List<Piece>(pieces.Keys); //fixme later
+        return new List<Piece>(pieces.Keys);
     }
 
     public void ShowPiecesNeeded(int quantity = 1)
     {
         foreach (var piece in pieces)
         {
-            Console.WriteLine($"{piece.Value * quantity} {piece.Key.ToString()}");
+            Console.WriteLine($"-- {piece.Value * quantity} {piece.Key.ToString()}");
         }
     }
 
@@ -55,6 +55,15 @@ public class RobotTemplate
             }
         }
         Console.WriteLine();
+    }
+    public override string ToString()
+    {
+        return $"RobotTemplate: {name}, Pieces: {string.Join(", ", pieces.Keys)}";
+    }
+
+    public string GetName()
+    {
+        return name;
     }
 }
 
