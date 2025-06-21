@@ -1,7 +1,27 @@
 namespace RobotFactory;
 
-public class Stock
+public sealed class Stock
 {
+    
+    // SINGLETON PATTERN TO ACCESS THE SAME STOCK INSTANCE GLOBALLY
+  
+    private Stock()
+    {
+    }
+    private static Stock? _instance;
+
+    public static Stock Instance
+    {
+        get
+        {
+            if(_instance==null)
+            {
+                _instance = new Stock();
+            }
+            return _instance;
+        }
+    }
+    
     //fixme: oui j'ai pas fait d'effort mais il y aura un refacto sur toute la classe
     public int XM1 { get; set; } = 0;
     public int RD1 { get; set; } = 0;

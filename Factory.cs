@@ -23,7 +23,7 @@ public class Factory
    Le seul système principal disponible actuellement et compatible avec tous les modules
    principaux est le : System_SB1
  */
-    private Stock stocks = new Stock();
+    private Stock stocks = Stock.Instance; //call to the singleton stock instance
     private static Core Core_CM1 = new Core("Core_CM1");
     private static Core Core_CD1 = new Core("Core_CD1");
     private static Core Core_CI1 = new Core("Core_CI1");

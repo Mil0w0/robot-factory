@@ -1,4 +1,10 @@
 # ROBOT FACTORY
+
+### Authors:
+- Loriane HILDERAL
+- Clarence HIRSCH
+- Alan DIOT
+
 ### C# implementations of Design Patterns
 
 Une usine de robots souhaite automatiser et simplifier le suivi de sa production.
@@ -175,5 +181,14 @@ sera affiché sous la forme :
 Où Message indique pourquoi la commande est incorrecte
 
 
+### RAJOUT de l'étape 2 : 
+
+Nous avons rajouté les design patters suivants : 
+- Singleton pour la gestion du stock
+- Builder
+
+
+
 ### Branches: 
 - naive : naive implementation without design patters
+- step-2 : step 2 implementation with design patterns and more logic
