@@ -1,3 +1,5 @@
+using RobotFactory.RobotAssemblyConstraintStrategy;
+
 namespace RobotFactory;
 
 public class Factory
@@ -24,64 +26,48 @@ public class Factory
    principaux est le : System_SB1
  */
     private Stock stocks = Stock.Instance; //call to the singleton stock instance
-    private static Core Core_CM1 = new Core("Core_CM1");
-    private static Core Core_CD1 = new Core("Core_CD1");
-    private static Core Core_CI1 = new Core("Core_CI1");
-    private static Generator Generator_GM1 = new Generator("Generator_GM1");
-    private static Generator Generator_GD1 = new Generator("Generator_GD1");
-    private static Generator Generator_GI1 = new Generator("Generator_GI1");
-    private static Arm Arms_AM1 = new Arm("Arms_AM1");
-    private static Arm Arms_AD1 = new Arm("Arms_AD1");
-    private static Arm Arms_AI1 = new Arm("Arms_AI1");
-    private static Leg Legs_LM1 = new Leg("Legs_LM1");
-    private static Leg Legs_LD1 = new Leg("Legs_LD1");
-    private static Leg Legs_LI1 = new Leg("Legs_LI1");
-    private static System System_SB1 = new System("System_SB1");
+    private static Core Core_CM1 = new Core("Core_CM1", Category.Military);
+    private static Core Core_CD1 = new Core("Core_CD1", Category.Domestic);
+    private static Core Core_CI1 = new Core("Core_CI1", Category.Industrial);
+    private static Generator Generator_GM1 = new Generator("Generator_GM1", Category.Military);
+    private static Generator Generator_GD1 = new Generator("Generator_GD1", Category.Domestic);
+    private static Generator Generator_GI1 = new Generator("Generator_GI1", Category.Industrial);
+    private static Arm Arms_AM1 = new Arm("Arms_AM1", Category.Military);
+    private static Arm Arms_AD1 = new Arm("Arms_AD1", Category.Domestic);
+    private static Arm Arms_AI1 = new Arm("Arms_AI1", Category.Industrial);
+    private static Leg Legs_LM1 = new Leg("Legs_LM1", Category.Military);
+    private static Leg Legs_LD1 = new Leg("Legs_LD1", Category.Domestic);
+    private static Leg Legs_LI1 = new Leg("Legs_LI1", Category.Industrial);
+    private static System System_SB1 = new System("System_SB1", Category.Generalist);
+    private static System System_SM1 = new System("System_SM1", Category.Military);
+    private static System System_SD1 = new System("System_SD1", Category.Domestic);
+    private static System System_SI1 = new System("System_SI1", Category.Industrial);
     
-    /*
-     * L’usine est actuellement capable de produire une variété relativement limitée de robots :
-        XM-1
-       o Core_CM1 (System_SB1)
-       o Generator_GM1
-       o Arms_AM1
-       o Legs_LM1
-        RD-1
-       o Core_CD1 (System_SB1)
-       o Generator_GD1
-       o Arms_AD1
-       o Legs_LD1
-        WI-1
-       o Core_CI1 (System_SB1)
-       o Generator_GI1
-       o Arms_AI1
-       o Legs_LI1
-     */
-
-    private static Dictionary<Piece, int> piecesForXM1 = new Dictionary<Piece, int>
-    {
-        { Core_CM1, 1 },
-        { Generator_GM1, 1 },
-        { Arms_AM1, 1 },
-        { Legs_LM1, 1 }
-    };
-    private static Dictionary<Piece, int> piecesForRD1 = new Dictionary<Piece, int>
-    {
-        { Core_CD1, 1 },
-        { Generator_GD1, 1 },
-        { Arms_AD1, 1 },
-        { Legs_LD1, 1 }
-    };
-    private static Dictionary<Piece, int> piecesForWI1 = new Dictionary<Piece, int>
-    {
-        { Core_CI1, 1 },
-        { Generator_GI1, 1 },
-        { Arms_AI1, 1 },
-        { Legs_LI1, 1 }
-    };
-    private RobotTemplate XM1 = new RobotTemplate("XM-1", piecesForXM1);
-    private RobotTemplate RD1 = new RobotTemplate("RD-1", piecesForRD1);
-    private RobotTemplate WI1 = new RobotTemplate("WI-1", piecesForWI1);
     
+    private RobotTemplate? XM1 = new RobotBuilder("XM-1", new MilitaryConstraintStrategy())
+        .AddSystem(System_SM1)
+        .AddPiece(Core_CM1)
+        .AddPiece(Generator_GM1)
+        .AddPiece(Arms_AM1)
+        .AddPiece(Legs_LM1)
+       
+        .Build();
+    
+    private RobotTemplate? RD1 = new RobotBuilder("RD-1", new DomesticConstraintStrategy())
+        .AddSystem(System_SB1)
+        .AddPiece(Core_CD1)
+        .AddPiece(Generator_GD1)
+        .AddPiece(Arms_AD1)
+        .AddPiece(Legs_LD1)
+       
+        .Build();
+    private RobotTemplate? WI1 = new RobotBuilder("WI-1", new IndustrialConstraintStrategy())
+        .AddSystem(System_SB1)
+        .AddPiece(Core_CI1)
+        .AddPiece(Generator_GI1)
+        .AddPiece(Arms_AI1)
+        .AddPiece(Legs_LI1)
+        .Build();
     public void ShowStock()
     {
         stocks.DisplayStock();
@@ -111,6 +97,7 @@ public class Factory
 
             foreach (Piece piece in pieces)
             {
+                Console.WriteLine($"{robotQuantity.Value} {piece.GetName()}");
                 if(stocks.GetStock(piece.GetName()) < robotQuantity.Value)
                 {
                     isAvailable = false;

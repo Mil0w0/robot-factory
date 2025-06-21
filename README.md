@@ -185,7 +185,8 @@ Où Message indique pourquoi la commande est incorrecte
 
 Nous avons rajouté les design patters suivants : 
 - Singleton pour la gestion du stock
-- Builder
+- Builder pour la création d'un robot
+- Strategy pour les contraintes de création de robot
 
 
 

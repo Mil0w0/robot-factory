@@ -3,7 +3,7 @@ namespace RobotFactory;
 public class RobotTemplate
 {
     private string name;
-    private Dictionary<Piece, int> pieces = new Dictionary<Piece, int>();
+    private Dictionary<Piece, int> pieces;
     
     public RobotTemplate(string name, Dictionary<Piece, int> pieces)
     {
@@ -32,7 +32,8 @@ public class RobotTemplate
             Console.WriteLine("GET_OUT_OF_STOCK " + piece.GetName());
             if (piece.GetPieceType() == "CORE")
             {
-                Console.WriteLine($"INSTALL System_SB1 {piece.GetName()}");
+                var core = (Core)piece;
+                Console.WriteLine($"INSTALL {core.getSystem().ToString()} {piece.GetName()}");
             }
         }
                         
@@ -56,3 +57,5 @@ public class RobotTemplate
         Console.WriteLine();
     }
 }
+
+
