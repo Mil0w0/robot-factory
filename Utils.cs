@@ -54,4 +54,10 @@ public class Utils
 
         return robotQuantities;
     }
+
+    public static Dictionary<string, int> FilterInputForTemplate(string input)
+    {
+        return null; // This method should be implemented to filter input for adding templates
+    }
+
 }

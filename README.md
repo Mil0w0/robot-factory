@@ -181,13 +181,18 @@ sera affiché sous la forme :
 Où Message indique pourquoi la commande est incorrecte
 
 
-### RAJOUT de l'étape 2 : 
+### RAJOUT à l'étape 2 : 
 
 Nous avons rajouté les design patters suivants : 
 - Singleton pour la gestion du stock
 - Builder pour la création d'un robot
 - Strategy pour les contraintes de création de robot
 
+# Ce qu'il reste à faire les coupains: 
+- Plein de todo pour add template feature pcq elle marche qu'a moitié
+- unit tests ?
+- Bug when command is q
+- refacto show instructions comme les autres méthodes du dessus
 
 
 ### Branches: 
