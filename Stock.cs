@@ -38,6 +38,10 @@ public sealed class Stock
     public int Legs_LM1 { get; set; } = 1;
     public int Legs_LD1 { get; set; } = 1;
     public int Legs_LI1 { get; set; } = 1;
+    public int System_SM1 { get; set; } = 1;
+    public int System_SD1 { get; set; } = 1;
+    public int System_SI1 { get; set; } = 1;
+    public int System_SB1 { get; set; } = 1;
   
     
     public void DisplayStock()
@@ -146,6 +150,15 @@ public sealed class Stock
                 return Legs_LD1;
             case "LEGS_LI1":
                 return Legs_LI1;
+            case "SYSTEM_SM1":
+                return System_SM1;
+            case "SYSTEM_SD1":
+                return System_SD1;
+            case "SYSTEM_SI1":
+                return System_SI1;
+            case "SYSTEM_SB1":
+                return System_SB1;
+                
                 
             default:
                 Utils.ShowError("Invalid robot piece name.");
