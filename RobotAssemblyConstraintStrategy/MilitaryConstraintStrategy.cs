@@ -20,6 +20,6 @@ public class MilitaryConstraintStrategy : IConstraintStrategy
     
     public int GetMaxModulesAllowed()
     {
-        return 2;
+        return 4;
     }
 }

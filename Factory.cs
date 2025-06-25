@@ -48,6 +48,7 @@ public class Factory
         .AddPiece(Core_CI1)
         .AddPiece(Generator_GI1)
         .AddPiece(Arms_AI1)
+        .AddPiece(Arms_AI1)
         .AddPiece(Legs_LI1)
         .Build();
 
