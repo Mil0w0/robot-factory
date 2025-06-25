@@ -19,6 +19,6 @@ public class IndustrialConstraintStrategy : IConstraintStrategy
     
     public int GetMaxModulesAllowed()
     {
-        return 3;
+        return 5;
     }
 }

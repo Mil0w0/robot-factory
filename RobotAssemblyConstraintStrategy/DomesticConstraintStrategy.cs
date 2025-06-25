@@ -22,6 +22,6 @@ public class DomesticConstraintStrategy : IConstraintStrategy
     }
     public int GetMaxModulesAllowed()
     {
-        return 1;
+        return 3;
     }
 }

@@ -13,7 +13,9 @@ public class RobotTemplate
     
     public List<Piece> GetNeededPieces()
     {
-        return new List<Piece>(pieces.Keys);
+        return pieces
+            .SelectMany(entry => Enumerable.Repeat(entry.Key, entry.Value))
+            .ToList();
     }
 
     public void ShowPiecesNeeded(int quantity = 1)
@@ -38,21 +40,22 @@ public class RobotTemplate
         }
                         
         //Tant qu'on peut assembler 2 pièces
-        while (pieces.Count > 1)
+        int j = 0;
+        while (j < pieces.Count - 1)
         {
-            for (int j = 0; j < pieces.Count; j++)
-            {
-                Piece piece1 = pieces[j];
-                Piece piece2 = pieces[j+1];
+            Piece piece1 = pieces[j];
+            Piece piece2 = pieces[j + 1];
 
-                var assembledPiece = new Assembly($"Assembly_{piece1.GetPieceType()}_{piece2.GetPieceType()}");
-                Console.WriteLine($"ASSEMBLE Assembly_{piece1.GetPieceType()}_{piece2.GetPieceType()} {piece1.GetName()} {piece2.GetName()}");
+            var assembledPiece = new Assembly($"Assembly_{piece1.GetPieceType()}_{piece2.GetPieceType()}");
+            Console.WriteLine($"ASSEMBLE Assembly_{piece1.GetPieceType()}_{piece2.GetPieceType()} {piece1.GetName()} {piece2.GetName()}");
 
-                pieces.Add(assembledPiece);
+            pieces.RemoveAt(j + 1);
+            pieces.RemoveAt(j);
+            
+            pieces.Add(assembledPiece);
 
-                pieces.RemoveAt(j+1); 
-                pieces.RemoveAt(j); 
-            }
+            // Move to the next pair
+            j++;
         }
         Console.WriteLine();
     }

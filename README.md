@@ -195,3 +195,4 @@ Nous avons rajouté les design patters suivants :
 
 ## Ce qu'il reste à faire les coupains: 
 - il manque comment trouver la stratégie quand on créé un tempalte de robot elle est fixe là (forcément militaire)
+- Problème dans toutes les méthodes depuis qu'on a rajouté plusieurs pièces du meême type. Jsp quoi faire il est tard.
