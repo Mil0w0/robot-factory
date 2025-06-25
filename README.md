@@ -5,6 +5,11 @@
 - Clarence HIRSCH
 - Alan DIOT
 
+### Branches:
+- naive : naive implementation without design patters
+- step-2 : step 2 implementation with design patterns and more logic
+- step-3 : step 3 implementation with complementary modules and more logic
+
 ### C# implementations of Design Patterns
 
 Une usine de robots souhaite automatiser et simplifier le suivi de sa production.
@@ -181,20 +186,12 @@ sera affiché sous la forme :
 Où Message indique pourquoi la commande est incorrecte
 
 
-### RAJOUT à l'étape 2 : 
+### Design patterns à l'étape 2 : 
 
 Nous avons rajouté les design patters suivants : 
-- Singleton pour la gestion du stock
+- Singleton pour la gestion du stock et le catalogue de templates de robots
 - Builder pour la création d'un robot
 - Strategy pour les contraintes de création de robot
 
-# Ce qu'il reste à faire les coupains: 
-- Plein de todo pour add template feature pcq elle marche qu'a moitié
-- unit tests ?
-- Bug when command is q
-- refacto show instructions comme les autres méthodes du dessus
-
-
-### Branches: 
-- naive : naive implementation without design patters
-- step-2 : step 2 implementation with design patterns and more logic
+## Ce qu'il reste à faire les coupains: 
+- il manque comment trouver la stratégie quand on créé un tempalte de robot elle est fixe là (forcément militaire)
