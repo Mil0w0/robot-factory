@@ -16,4 +16,9 @@ public class IndustrialConstraintStrategy : IConstraintStrategy
         return system.GetCategory() == Category.Industrial ||
                system.GetCategory() == Category.Generalist;
     }
+    
+    public int GetMaxModulesAllowed()
+    {
+        return 3;
+    }
 }

@@ -7,5 +7,7 @@ public interface IConstraintStrategy
          */
         bool IsValid(List<Piece> pieces);
         bool IsValidSystem(System system);
-    
+
+        int GetMaxModulesAllowed();
+
 }
