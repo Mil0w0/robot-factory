@@ -8,17 +8,9 @@ ourFactory.AddDefaultRobotTemplates();
 
 
 //INFINITE MENU LOOP
-Console.WriteLine("Welcome to the factory!");
-Console.WriteLine("Enter 'Q' to quit.");
-Console.WriteLine("Enter 'STOCKS' to check the factory stocks.");
-Console.WriteLine("Enter 'NEEDED_STOCKS 1 XM-1, 2 RD-1' to check the stocks needed for those robots.");
-Console.WriteLine("Enter 'PRODUCE 1 XM-1' to create it and update stock.");
-Console.WriteLine("Enter 'ADD_TEMPLATE TEST Core_CM1, Generator_GM1, Arms_AM1, Legs_LM1' to create it and update stock.");
-Console.WriteLine("Enter 'INSTRUCTIONS 1 XM-1' to see the steps to create 1 XM-1 robot.");
-Console.WriteLine("Enter 'VERIFY 1 XM-1' to check availabilty of the command if we produce it.");
-
 while (true)
 {
+    Utils.DisplayCommands();
     input = Utils.GetUserInput("Enter an instruction:");
     
     if (input.ToUpper() == "Q")
@@ -66,6 +58,16 @@ while (true)
     else if (input.ToUpper().StartsWith("ADD_TEMPLATE"))
     {
         ourFactory.AddRobotTemplate( input);
+    }
+    else if (input.ToUpper().StartsWith("RECEIVE"))
+    {
+        
+        Dictionary<string, int> itemQuantities = Utils.FilterCommand(input);
+        if (itemQuantities.Count == 0)
+        {
+            continue;
+        }
+        ourFactory.ReceivesStocks(itemQuantities);
     }
     else
     {

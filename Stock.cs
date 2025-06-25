@@ -59,7 +59,7 @@ public sealed class Stock
         // Check if the piece is already in stock
         if (piecesStock.TryGetValue(name, out var pieceStock))
         {
-            piecesStock[name] = (pieceStock.piece, pieceStock.quantity - addQuantity);
+            piecesStock[name] = (pieceStock.piece, pieceStock.quantity + addQuantity);
         }
         else
         {
