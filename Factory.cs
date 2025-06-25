@@ -245,4 +245,16 @@ public class Factory
             Console.WriteLine("STOCK_UPDATED");
         }
     }
+    
+    public void ReceivesStocks(Dictionary<string, int> itemQuantities)
+    {
+        // It is checked that it's conform previously
+        foreach (var item in itemQuantities)
+        {
+            string itemName = item.Key;
+            int quantity = item.Value;
+            
+            stocks.UpdateStock(itemName, quantity);
+        }
+    }
 }

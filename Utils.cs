@@ -28,32 +28,47 @@ public class Utils
         {
             string[] robotCommand = robot.Split(" ");
             string quantity = robotCommand[1];
-            string robotName = robotCommand[2];
+            string itemName = robotCommand[2];
           
-            var template = BookOfTemplates.Instance.GetTemplate(robotName);
+            bool isPiece = Stock.Instance.GetPiece(itemName) != null;
+            bool isTemplate = BookOfTemplates.Instance.GetTemplate(itemName) != null;
 
-            if (template == null)
+            if (!isPiece && !isTemplate)
             {
-                ShowError($"{robotName} is not a recognized robot.");
+                ShowError($"{itemName} is not a recognized piece or robot.");
                 continue;
             }
-
+            
             if (int.Parse(quantity) <= 0)
             {
                 ShowError("Invalid quantity.");
                 continue;
             }
 
-            if (robotQuantities.ContainsKey(robotName))
+            if (robotQuantities.ContainsKey(itemName))
             {
-                robotQuantities[robotName] += int.Parse(quantity);
+                robotQuantities[itemName] += int.Parse(quantity);
             }
             else
             {
-                robotQuantities.Add(robotName, int.Parse(quantity));
+                robotQuantities.Add(itemName, int.Parse(quantity));
             }
         }
 
         return robotQuantities;
+    }
+
+    public static void DisplayCommands()
+    {
+        Console.WriteLine("Welcome to the factory!");
+        Console.WriteLine("Enter 'Q' to quit.");
+        Console.WriteLine("Enter 'STOCKS' to check the factory stocks.");
+        Console.WriteLine("Enter 'NEEDED_STOCKS 1 XM-1, 2 RD-1' to check the stocks needed for those robots.");
+        Console.WriteLine("Enter 'PRODUCE 1 XM-1' to create it and update stock.");
+        Console.WriteLine("Enter 'ADD_TEMPLATE TEST Core_CM1, Generator_GM1, Arms_AM1, Legs_LM1' to create it and update stock.");
+        Console.WriteLine("Enter 'INSTRUCTIONS 1 XM-1' to see the steps to create 1 XM-1 robot.");
+        Console.WriteLine("Enter 'VERIFY 1 XM-1' to check availabilty of the command if we produce it.");
+        Console.WriteLine("Enter 'RECEIVE 1 XM-1, 2 Arms_AI1' to add 1 XM-1 and 2 arms to the stock.");
+
     }
 }
