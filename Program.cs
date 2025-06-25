@@ -17,11 +17,15 @@ Console.WriteLine("Enter 'ADD_TEMPLATE TEST Core_CM1, Generator_GM1, Arms_AM1, L
 Console.WriteLine("Enter 'INSTRUCTIONS 1 XM-1' to see the steps to create 1 XM-1 robot.");
 Console.WriteLine("Enter 'VERIFY 1 XM-1' to check availabilty of the command if we produce it.");
 
-while (input.ToUpper() != "Q")
+while (true)
 {
     input = Utils.GetUserInput("Enter an instruction:");
     
-    if (input.ToUpper() == "STOCKS")
+    if (input.ToUpper() == "Q")
+    {
+        break;
+    }
+    else if (input.ToUpper() == "STOCKS")
     {
        ourFactory.ShowStock();
     }
@@ -69,7 +73,6 @@ while (input.ToUpper() != "Q")
     }
 }
 
-return 0;
 
 
 
