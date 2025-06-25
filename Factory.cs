@@ -70,6 +70,8 @@ public class Factory
 
         Console.WriteLine(bookOfTemplates.ToString());
 
+        
+        //DEFAULT STOCK INITIALIZATION
         stocks.Initialize(new List<Piece>
         {
             Core_CM1, Core_CD1, Core_CI1,
@@ -82,21 +84,26 @@ public class Factory
 
     public void AddRobotTemplate(string input)
     {
-        //Revoir ça pcq ça maarche pas j'ai tout essayé mdr même l'ia capte pas
         string commandArgs = input.Substring("ADD_TEMPLATE ".Length).Trim();
 
-        int firstCommaIndex = commandArgs.IndexOf(',');
-        if (firstCommaIndex == -1)
+
+        // Find the first space to find the name
+        int firstSpaceIndex = commandArgs.IndexOf(' ');
+        if (firstSpaceIndex == -1)
         {
-            Utils.ShowError("Invalid Command. Usage: ADD_TEMPLATE Name, Piece1, Piece2, ...");
+            Utils.ShowError("INvalid command. FOllow format: ADD_TEMPLATE TEMPLATE_NAME Piece1, ..., PieceN.");
             return;
         }
 
+        // Extract template name
+        string templateName = commandArgs.Substring(0, firstSpaceIndex).Trim();
 
-        string name = commandArgs.Substring(0, firstCommaIndex).Trim();
-        string piecesString = commandArgs.Substring(firstCommaIndex + 1).Trim();
 
-        var pieceNames = piecesString.Split(",", StringSplitOptions.RemoveEmptyEntries)
+        // Extract piece names (split by commas)
+        string piecesPart = commandArgs.Substring(firstSpaceIndex + 1).Trim();
+
+        var pieceNames = piecesPart
+            .Split(",", StringSplitOptions.RemoveEmptyEntries)
             .Select(p => p.Trim())
             .ToList();
 
@@ -116,7 +123,7 @@ public class Factory
         }
 
         //TODO: GUESS THE STRATEDY MAIS LA, FLEMME
-        BookOfTemplates.Instance.AddTemplate(name, pieces, new MilitaryConstraintStrategy());
+        BookOfTemplates.Instance.AddTemplate(templateName, pieces, new MilitaryConstraintStrategy());
         Console.WriteLine(bookOfTemplates.ToString());
     }
 
@@ -198,25 +205,14 @@ public class Factory
                                   sameRobotQuantity.Value + ")");
 
                 List<Piece> pieces;
-                //fixme : c'est pas très joli mais ok 
-                switch (sameRobotQuantity.Key.ToUpper())
+                var template = bookOfTemplates.GetTemplate(sameRobotQuantity.Key);
+                if (template == null)
                 {
-                    case "WI-1":
-                        pieces = (WI1.GetNeededPieces());
-                        WI1.ShowInstructions(pieces);
-                        break;
-                    case "RD-1":
-                        pieces = (RD1.GetNeededPieces());
-                        RD1.ShowInstructions(pieces);
-                        break;
-                    case "XM-1":
-                        pieces = (XM1.GetNeededPieces());
-                        XM1.ShowInstructions(pieces);
-                        break;
-                    default:
-                        Utils.ShowError("Invalid robot type name.");
-                        break;
+                    Utils.ShowError($"{sameRobotQuantity.Key} is not a recognized robot.");
+                    return;
                 }
+                pieces = template.GetNeededPieces();
+                template.ShowInstructions(pieces);
 
                 Console.WriteLine("FINISHED " + sameRobotQuantity.Key + " (" + (i + 1) + "/" +
                                   sameRobotQuantity.Value + ")");

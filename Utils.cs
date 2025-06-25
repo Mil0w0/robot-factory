@@ -9,7 +9,7 @@ public class Utils
         Console.ResetColor();
         Console.WriteLine($" {message}");
     }
-    
+
     public static string GetUserInput(string message)
     {
         Console.WriteLine(message);
@@ -29,19 +29,21 @@ public class Utils
             string[] robotCommand = robot.Split(" ");
             string quantity = robotCommand[1];
             string robotName = robotCommand[2];
-            string[] allowedRobotsName = { "XM-1", "RD-1", "WI-1" };
-            
-            if (!allowedRobotsName.Contains(robotName.ToUpper()))
+          
+            var template = BookOfTemplates.Instance.GetTemplate(robotName);
+
+            if (template == null)
             {
-                ShowError($"{robotName} isn't a recognized robot.");
+                ShowError($"{robotName} is not a recognized robot.");
                 continue;
             }
+
             if (int.Parse(quantity) <= 0)
             {
                 ShowError("Invalid quantity.");
                 continue;
             }
-            
+
             if (robotQuantities.ContainsKey(robotName))
             {
                 robotQuantities[robotName] += int.Parse(quantity);
@@ -54,10 +56,4 @@ public class Utils
 
         return robotQuantities;
     }
-
-    public static Dictionary<string, int> FilterInputForTemplate(string input)
-    {
-        return null; // This method should be implemented to filter input for adding templates
-    }
-
 }
