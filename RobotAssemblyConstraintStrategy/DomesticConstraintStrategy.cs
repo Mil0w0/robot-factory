@@ -20,4 +20,8 @@ public class DomesticConstraintStrategy : IConstraintStrategy
                system.GetCategory() == Category.Generalist ||
                system.GetCategory() == Category.Industrial;
     }
+    public int GetMaxModulesAllowed()
+    {
+        return 1;
+    }
 }
