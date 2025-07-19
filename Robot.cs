@@ -38,24 +38,22 @@ public class RobotTemplate
                 Console.WriteLine($"INSTALL {core.getSystem().ToString()} {piece.GetName()}");
             }
         }
+        
+        List<Piece> piecesToAssemble = new List<Piece>(pieces);
                         
         //Tant qu'on peut assembler 2 pièces
-        int j = 0;
-        while (j < pieces.Count - 1)
+        while (piecesToAssemble.Count > 1)
         {
-            Piece piece1 = pieces[j];
-            Piece piece2 = pieces[j + 1];
+            Piece piece1 = piecesToAssemble[0];
+            Piece piece2 = piecesToAssemble[1];
 
             var assembledPiece = new Assembly($"Assembly_{piece1.GetPieceType()}_{piece2.GetPieceType()}");
             Console.WriteLine($"ASSEMBLE Assembly_{piece1.GetPieceType()}_{piece2.GetPieceType()} {piece1.GetName()} {piece2.GetName()}");
 
-            pieces.RemoveAt(j + 1);
-            pieces.RemoveAt(j);
+            piecesToAssemble.RemoveAt(1);
+            piecesToAssemble.RemoveAt(0);
             
-            pieces.Add(assembledPiece);
-
-            // Move to the next pair
-            j++;
+            piecesToAssemble.Add(assembledPiece);
         }
         Console.WriteLine();
     }
