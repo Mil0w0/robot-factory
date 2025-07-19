@@ -107,7 +107,9 @@ public class Utils
 
     public static void DisplayCommands()
     {
+        Console.WriteLine("\n----------------------");
         Console.WriteLine("Welcome to the factory!");
+        Console.WriteLine("----------------------");
         Console.WriteLine("Enter 'Q' to quit.");
         Console.WriteLine("Enter 'STOCKS' to check the factory stocks.");
         Console.WriteLine("Enter 'NEEDED_STOCKS 1 XM-1, 2 RD-1' to check the stocks needed for those robots.");
@@ -118,7 +120,7 @@ public class Utils
         Console.WriteLine("Enter 'RECEIVE 1 XM-1, 2 Arms_AI1' to add 1 XM-1 and 2 arms to the stock.");
         Console.WriteLine("Enter 'ORDER 1 XM-1, 1 RD-1' to order those robots.");
         Console.WriteLine("Enter 'SEND 1 1 XM-1' to send 1 XM-1 to the order 1.");
-        Console.WriteLine("Enter 'LIST_ORDER' to list all orders.");
+        Console.WriteLine("Enter 'LIST_ORDER' to list all orders.\n");
 
     }
 }
