@@ -89,6 +89,11 @@ public sealed class Stock
         return piecesStock.ContainsKey(name) ? piecesStock[name].quantity : 0;
     }
     
+    public int GetRobotStock(string name)
+    {
+        return robotStock.ContainsKey(name) ? robotStock[name].quantity : 0;
+    }
+    
     public Piece? GetPiece(string name)
     {
         return piecesStock.TryGetValue(name, out var entry) ? entry.piece : null;

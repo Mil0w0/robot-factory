@@ -57,6 +57,53 @@ public class Utils
 
         return robotQuantities;
     }
+    
+    public static Dictionary<string, int> ParseRobotQuantities(string robotsPart)
+    {
+        Dictionary<string, int> robotQuantities = new Dictionary<string, int>();
+
+        string[] robots = robotsPart.Split(",", StringSplitOptions.RemoveEmptyEntries);
+        foreach (var robot in robots)
+        {
+            string[] robotCommand = robot.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+            if (robotCommand.Length != 2)
+            {
+                ShowError($"Invalid robot entry: {robot}");
+                continue;
+            }
+
+            if (!int.TryParse(robotCommand[0], out int quantity) || quantity <= 0)
+            {
+                ShowError($"Invalid quantity for robot: {robot}");
+                continue;
+            }
+
+            string robotName = robotCommand[1];
+
+            // Validate if robotName is known (template or piece)
+            bool isPiece = Stock.Instance.GetPiece(robotName) != null;
+            bool isTemplate = BookOfTemplates.Instance.GetTemplate(robotName) != null;
+
+            if (!isPiece && !isTemplate)
+            {
+                ShowError($"{robotName} is not a recognized piece or robot.");
+                continue;
+            }
+
+            if (robotQuantities.ContainsKey(robotName))
+            {
+                robotQuantities[robotName] += quantity;
+            }
+            else
+            {
+                robotQuantities.Add(robotName, quantity);
+            }
+        }
+
+        return robotQuantities;
+    }
+
 
     public static void DisplayCommands()
     {
@@ -69,6 +116,9 @@ public class Utils
         Console.WriteLine("Enter 'INSTRUCTIONS 1 XM-1' to see the steps to create 1 XM-1 robot.");
         Console.WriteLine("Enter 'VERIFY 1 XM-1' to check availabilty of the command if we produce it.");
         Console.WriteLine("Enter 'RECEIVE 1 XM-1, 2 Arms_AI1' to add 1 XM-1 and 2 arms to the stock.");
+        Console.WriteLine("Enter 'ORDER 1 XM-1, 1 RD-1' to order those robots.");
+        Console.WriteLine("Enter 'SEND 1 1 XM-1' to send 1 XM-1 to the order 1.");
+        Console.WriteLine("Enter 'LIST_ORDER' to list all orders.");
 
     }
 }

@@ -188,8 +188,8 @@ Où Message indique pourquoi la commande est incorrecte
 
 ### Design patterns à l'étape 2 : 
 
-Nous avons rajouté les design patters suivants : 
-- Singleton pour la gestion du stock et le catalogue de templates de robots
+Nous avons rajouté les design patterns suivants : 
+- Singletons pour la gestion du stock et le catalogue de templates de robots et de commande
 - Builder pour la création d'un robot
 - Strategy pour les contraintes de création de robot
 
