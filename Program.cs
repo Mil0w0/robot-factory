@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using RobotFactory;
+﻿using RobotFactory;
 
 //INITIALIZATION OF THE FACTORY
 string input = "";
@@ -17,97 +16,25 @@ while (true)
     {
         break;
     }
-    else if (input.ToUpper() == "STOCKS")
-    {
-        ourFactory.ShowStock();
-    }
-    else if (input.ToUpper().StartsWith("NEEDED_STOCKS"))
-    {
-        Dictionary<string, int> robotQuantities = Utils.FilterCommand(input);
-        ourFactory.CheckNeededStock(robotQuantities);
-    }
-    else if (input.ToUpper().StartsWith("INSTRUCTIONS"))
-    {
-        Dictionary<string, int> robotQuantities = Utils.FilterCommand(input);
-        if (robotQuantities.Count == 0)
-        {
-            continue;
-        }
 
-        ourFactory.GetRobotProductionInstructions(robotQuantities);
-    }
-    else if (input.ToUpper().StartsWith("VERIFY"))
+    try
     {
-        Dictionary<string, int> robotQuantities = Utils.FilterCommand(input);
-        if (robotQuantities.Count == 0)
+        var command = ConsoleCommandFactory.Parse(input, ourFactory);
+        if (command != null)
         {
-            continue;
+            command.Execute();
         }
-
-        ourFactory.checkPiecesAvailability(robotQuantities);
-    }
-    else if (input.ToUpper().StartsWith("PRODUCE"))
-    {
-        Dictionary<string, int> robotQuantities = Utils.FilterCommand(input);
-        bool isAvailable = ourFactory.checkPiecesAvailability(robotQuantities);
-        if (!isAvailable)
+        else
         {
-            continue;
+            Utils.ShowError("Invalid command. Please try again.");
         }
-
-        ourFactory.ProduceRobot(robotQuantities);
     }
-    else if (input.ToUpper().StartsWith("ADD_TEMPLATE"))
+    catch (ArgumentException ex)
     {
-        ourFactory.AddRobotTemplate(input);
+        Utils.ShowError(ex.Message);
     }
-    else if (input.ToUpper().StartsWith("RECEIVE"))
+    catch (InvalidOperationException ex)
     {
-        Dictionary<string, int> itemQuantities = Utils.FilterCommand(input);
-        if (itemQuantities.Count == 0)
-        {
-            continue;
-        }
-
-        ourFactory.ReceivesStocks(itemQuantities);
-    }
-    else if (input.ToUpper().StartsWith("ORDER"))
-    {
-        Dictionary<string, int> itemQuantities = Utils.FilterCommand(input);
-        if (itemQuantities.Count == 0)
-        {
-            continue;
-        }
-
-        ourFactory.SaveOrder(itemQuantities);
-    }
-    else if (input.ToUpper().StartsWith("LIST_ORDER"))
-    {
-        ourFactory.ListOrders();
-    }
-    else if (input.ToUpper().StartsWith("SEND"))
-    {
-        string parts = input.Substring("SEND ".Length).Trim();
-        int commaIndex = parts.IndexOf(",");
-        if (commaIndex == -1)
-        {
-           Utils.ShowError("Invalid SEND command. Format: SEND ORDERID, ARGS");
-            continue;
-        }
-
-        string orderId = parts.Substring(0, commaIndex).Trim();
-        string robotsPart = parts.Substring(commaIndex + 1).Trim();
-
-        Dictionary<string, int> robotQuantities = Utils.ParseRobotQuantities(robotsPart);
-        if (robotQuantities.Count == 0)
-        {
-            continue;
-        }
-        
-        ourFactory.Send(int.Parse(orderId), robotQuantities);
-    }
-    else
-    {
-        Utils.ShowError("Invalid command. Please try again.");
+        Utils.ShowError(ex.Message);
     }
 }
