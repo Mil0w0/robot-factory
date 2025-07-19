@@ -258,4 +258,28 @@ public class Factory
             stocks.UpdateStock(itemName, quantity);
         }
     }
+
+    public void SaveOrder(Dictionary<string, int> robotQuantities)
+    {
+        foreach (var robot in robotQuantities)
+        {
+            if (BookOfTemplates.Instance.GetTemplate(robot.Key) == null)
+            {
+                Utils.ShowError($"Unknown robot template: {robot.Key}");
+            }
+        }
+
+        int orderId = BookOfOrders.Instance.AddOrder(robotQuantities);
+        Console.WriteLine($"ORDER {orderId} CREATED");
+    }
+
+    public void Send(int orderId, Dictionary<string, int> robotQuantities)
+    {
+        BookOfOrders.Instance.ExecutePartialOrder(orderId, robotQuantities);
+    }
+    public void ListOrders()
+    {
+        BookOfOrders.Instance.ListOrders();
+    }
+    
 }
