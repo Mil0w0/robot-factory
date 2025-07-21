@@ -123,8 +123,18 @@ public class Factory
             pieces.Add(piece);
         }
 
-        //TODO: GUESS THE STRATEDY MAIS LA, FLEMME
-        BookOfTemplates.Instance.AddTemplate(templateName, pieces, new MilitaryConstraintStrategy());
+        //Guessing strategy
+        try
+        {
+            var strategy = RobotTemplateHelper.GuessConstraintStrategy(pieces);
+            BookOfTemplates.Instance.AddTemplate(templateName, pieces, strategy);
+        }
+        catch (InvalidOperationException ex)
+        {
+            Utils.ShowError(ex.Message);
+            return;
+        }
+        
         Console.WriteLine(bookOfTemplates.ToString());
     }
 
