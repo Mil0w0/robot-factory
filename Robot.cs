@@ -59,7 +59,7 @@ public class RobotTemplate
     }
     public override string ToString()
     {
-        return $"RobotTemplate: {name}, Pieces: {string.Join(", ", pieces.Keys)}";
+        return $"RobotTemplate: {name}, Pieces: {string.Join(", ", pieces.Select(p => $"{p.Value} {p.Key.GetName()}"))}";
     }
 
     public string GetName()

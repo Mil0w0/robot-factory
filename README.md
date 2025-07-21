@@ -186,13 +186,10 @@ sera affiché sous la forme :
 Où Message indique pourquoi la commande est incorrecte
 
 
-### Design patterns à l'étape 2 : 
+### Design patterns à l'étape 2 puis 3 : 
 
 Nous avons rajouté les design patterns suivants : 
 - Singletons pour la gestion du stock et le catalogue de templates de robots et de commande
 - Builder pour la création d'un robot
 - Strategy pour les contraintes de création de robot
-
-## Ce qu'il reste à faire les coupains: 
-- il manque comment trouver la stratégie quand on créé un tempalte de robot elle est fixe là (forcément militaire)
-- Problème dans toutes les méthodes depuis qu'on a rajouté plusieurs pièces du meême type. Jsp quoi faire il est tard.
+- Command pour les différentes entrées utilisateur

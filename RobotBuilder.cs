@@ -55,10 +55,11 @@ public class RobotBuilder
             constraintStrategy.GetMaxModulesAllowed())
         {
             Utils.ShowError(
-                $"Too many pieces for this robot category. Max allowed: {constraintStrategy.GetMaxModulesAllowed()}");
+                $"Too many movement pieces for this robot category: {constraintStrategy.ToString()}. Max allowed: {constraintStrategy.GetMaxModulesAllowed()}");
             return null;
         }
 
+        
         var piecesMap = pieces
             .GroupBy(p => p.GetName())
             .ToDictionary(g => g.First(), g => g.Count());
