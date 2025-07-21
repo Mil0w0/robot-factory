@@ -10,6 +10,18 @@
 - step-2 : step 2 implementation with design patterns and more logic
 - step-3 : step 3 implementation with complementary modules and more logic
 
+### Design patterns à l'étape 2 puis 3 : 
+
+Nous avons rajouté les design patterns suivants : 
+- Singletons pour la gestion du stock et le catalogue de templates de robots et de commande
+- Builder pour la création d'un robot
+- Strategy pour les contraintes de création de robot
+- Command pour les différentes entrées utilisateur
+
+### Modules implémentés : 
+- Module de gestion de commandes (orders) de robots
+- Gestion des entrées par fichiers
+
 ### C# implementations of Design Patterns
 
 Une usine de robots souhaite automatiser et simplifier le suivi de sa production.
@@ -185,11 +197,3 @@ sera affiché sous la forme :
 `STOCK_UPDATED`
 Où Message indique pourquoi la commande est incorrecte
 
-
-### Design patterns à l'étape 2 puis 3 : 
-
-Nous avons rajouté les design patterns suivants : 
-- Singletons pour la gestion du stock et le catalogue de templates de robots et de commande
-- Builder pour la création d'un robot
-- Strategy pour les contraintes de création de robot
-- Command pour les différentes entrées utilisateur
