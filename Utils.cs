@@ -120,7 +120,8 @@ public class Utils
         Console.WriteLine("Enter 'RECEIVE 1 XM-1, 2 Arms_AI1' to add 1 XM-1 and 2 arms to the stock.");
         Console.WriteLine("Enter 'ORDER 1 XM-1, 1 RD-1' to order those robots.");
         Console.WriteLine("Enter 'SEND 1 1 XM-1' to send 1 XM-1 to the order 1.");
-        Console.WriteLine("Enter 'LIST_ORDER' to list all orders.\n");
-
+        Console.WriteLine("Enter 'LIST_ORDER' to list all orders.");
+        Console.WriteLine("Enter 'LOAD' to load a script.");
+        Console.WriteLine("Enter 'SAVE_OUTPUT' to save the outputs.\n");
     }
 }

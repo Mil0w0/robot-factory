@@ -25,6 +25,8 @@ public static class ConsoleCommandFactory
             "ORDER" => new SaveOrderCommand(factory, input),
             "LIST_ORDER" => new ListOrdersCommand(factory),
             "SEND" => new SendCommand(factory, input),
+            "LOAD" => new LoadScriptCommand(factory, input),
+            "SAVE_OUTPUT" => new SaveOutputCommand(factory, input),
             _ => null
         };
     }
