@@ -15,16 +15,28 @@ namespace IO
             try
             {
                 string jsonContent = File.ReadAllText(filePath);
-                var instructions = JsonSerializer.Deserialize<List<string>>(jsonContent);
+                var script = JsonSerializer.Deserialize<JsonScript>(jsonContent, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
 
-                if (instructions == null)
-                    throw new InvalidDataException("Fichier JSON vide ou invalide.");
+                if (script == null || script.Commands.Count == 0)
+                    throw new InvalidDataException("Fichier JSON vide ou mal formé.");
 
-                return instructions;
+                var lines = new List<string>();
+                foreach (var cmd in script.Commands)
+                {
+                    string line = string.IsNullOrWhiteSpace(cmd.Args)
+                        ? cmd.Instruction
+                        : $"{cmd.Instruction} {cmd.Args}";
+                    lines.Add(line);
+                }
+
+                return lines;
             }
             catch (JsonException e)
             {
-                throw new InvalidDataException("Erreur de lecture du fichier JSON : " + e.Message);
+                throw new InvalidDataException("Erreur de lecture JSON : " + e.Message);
             }
         }
     }
