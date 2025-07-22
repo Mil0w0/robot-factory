@@ -1,0 +1,22 @@
+{
+  "scriptName": "test_order",
+  "author": "Dark Vador",
+  "commands": [
+    { "instruction": "STOCKS" },
+
+    { "instruction": "RECEIVE", "args": "4 Core_CD1, 4 Generator_GD1, 4 Arms_AD1, 4 Legs_LD1" },
+
+    { "instruction": "ORDER", "args": "1 RD-1" },
+    { "instruction": "ORDER", "args": "2 RD-1" },
+    { "instruction": "ORDER", "args": "1 RD-1" },
+
+    { "instruction": "LIST_ORDER" },
+
+    { "instruction": "PRODUCE", "args": "1 RD-1" },
+    { "instruction": "SAVE_OUTPUT", "args": "outputs/partial_send_log.txt" },
+    { "instruction": "SEND", "args": "1, 1 RD-1" },
+
+    { "instruction": "LIST_ORDER" },
+    { "instruction": "STOCKS" }
+  ]
+}
