@@ -1,0 +1,18 @@
+{
+  "scriptName": "test_add_template",
+  "author": "Indiana Jones",
+  "commands": [
+    { "instruction": "STOCKS" },
+
+    { "instruction": "RECEIVE", "args": "2 Core_CM1, 2 Generator_GM1, 2 Arms_AM1, 2 Legs_LM1" },
+
+    { "instruction": "ADD_TEMPLATE", "args": "MYBOT Core_CM1, Generator_GM1, Arms_AM1, Legs_LM1" },
+
+    { "instruction": "VERIFY", "args": "1 MYBOT" },
+    { "instruction": "PRODUCE", "args": "1 MYBOT" },
+
+    { "instruction": "SAVE_OUTPUT", "args": "outputs/test_add_template_log.txt" },
+
+    { "instruction": "STOCKS" }
+  ]
+}

@@ -1,0 +1,16 @@
+<Instructions>
+    <Instruction>STOCKS</Instruction>
+
+    <Instruction>VERIFY 1 RD-1</Instruction>
+    <Instruction>INSTRUCTIONS 1 RD-1</Instruction>
+    <Instruction>PRODUCE 1 RD-1</Instruction>
+
+    <Instruction>RECEIVE 2 Core_CD1, 2 Generator_GD1, 2 Arms_AD1, 2 Legs_LD1</Instruction>
+
+    <Instruction>SAVE_OUTPUT outputs/rd1_log.txt</Instruction>
+
+    <Instruction>VERIFY 1 RD-1</Instruction>
+    <Instruction>PRODUCE 1 RD-1</Instruction>
+
+    <Instruction>STOCKS</Instruction>
+</Instructions>

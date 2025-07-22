@@ -1,0 +1,13 @@
+{
+  "scriptName": "test_sans_template",
+  "author": "John Connor",
+  "commands": [
+    { "instruction": "STOCKS" },
+    { "instruction": "VERIFY", "args": "1 XM-1" },
+    { "instruction": "INSTRUCTIONS", "args": "1 XM-1" },
+    { "instruction": "PRODUCE", "args": "1 XM-1" },
+    { "instruction": "RECEIVE", "args": "2 Core_CM1, 2 Generator_GM1, 2 Arms_AM1, 2 Legs_LM1" },
+    { "instruction": "SAVE_OUTPUT", "args": "outputs/test_result.txt" },
+    { "instruction": "STOCKS" }
+  ]
+}
