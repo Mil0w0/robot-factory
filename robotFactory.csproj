@@ -7,5 +7,10 @@
         <Nullable>enable</Nullable>
         <RootNamespace>RobotFactory</RootNamespace>
     </PropertyGroup>
+    <ItemGroup>
+        <None Update="inputs\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
 </Project>
