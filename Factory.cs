@@ -249,7 +249,7 @@ public class Factory
 
             foreach (Piece piece in pieces)
             {
-                stocks.UpdateStock(piece.GetName(), robotQuantity.Value); //only works cuz we need 1 piece of each?
+                stocks.UpdateStock(piece.GetName(), -robotQuantity.Value);
             }
 
             stocks.UpdateStock(robotQuantity.Key, robotQuantity.Value);
