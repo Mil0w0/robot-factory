@@ -5,6 +5,9 @@
 - Clarence HIRSCH
 - Alan DIOT
 
+### GitHub:
+https://github.com/Mil0w0/robot-factory
+
 ### Branches:
 - naive : naive implementation without design patters
 - step-2 : step 2 implementation with design patterns and more logic
